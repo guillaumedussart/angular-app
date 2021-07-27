@@ -4,7 +4,7 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-
+<div *ngIf="collegues">test</div>
 </div>
 <div class="container">
   <table class="table">
@@ -23,10 +23,10 @@
       <td>{{coll.nom}}</td>
       <td>{{coll.prenom}}</td>
       <td>{{coll.email}}</td>
-      <td><button class="btn btn-primary">Modifier</button></td>
+      <td><button class="btn btn-primary" (click)="this.updateUser(coll.id)">Modifier</button></td>
     </tr>
     </tbody>
   </table>
 </div>
-
+<ngbd-modal-basic></ngbd-modal-basic>
 <router-outlet></router-outlet>
