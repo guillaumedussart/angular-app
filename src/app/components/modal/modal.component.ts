@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-
+import {FormBuilder} from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,7 +9,18 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class NgbdModalBasic {
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder
+  ) {
+  }
+
+  formUser = this.formBuilder.group({
+    id: '',
+    nom: '',
+    prenom: '',
+    email: ''
+  });
 
   // @ts-ignore
   open(content) {
@@ -28,5 +39,10 @@ export class NgbdModalBasic {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  onSubmit(): void {
+    console.warn('Your order has been submitted', this.formUser.value);
+    this.formUser.reset();
   }
 }

@@ -1,26 +1,39 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un collegue</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <form>
+  <form [formGroup]="formUser" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+
       <div class="form-group">
-        <label for="dateOfBirth">Date of birth</label>
-        <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-          </div>
-        </div>
+        <label for="id-user">Id</label>
+        <input type="text" class="form-control" id="id-user" placeholder="Id" value="id" formControlName="id">
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div>
+      <div class="form-group mt-3">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email"
+               formControlName="email">
+      </div>
+      <div class="form-group mt-3">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nom" value="nom" formControlName="nom">
+      </div>
+      <div class="form-group mt-3">
+        <label for="prenom">Prenom</label>
+        <input type="text" class="form-control" id="prenom" placeholder="Prenom" value="prenom"
+               formControlName="prenom">
+      </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Save click')">Fermer</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Sauvegarder</button>
+    </div>
+  </form>
 </ng-template>
 
 <button class="btn btn-primary" (click)="open(content)">Ajouter un collegue
