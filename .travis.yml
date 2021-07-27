@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "14"
+before_script:
+  - npm install
+script: npm run build
+deploy:
+  local-dir: dist/angular-app
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on:
+    branch: main
+notifications:
+  email: true
