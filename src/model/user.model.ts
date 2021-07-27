@@ -50,4 +50,11 @@ export interface UserJSON {
   nom: string;
   prenom: string;
   email: string;
+  photo:string;
+}
+
+export interface UserCard {
+  pseudo:string;
+  score:number;
+  photoUrl:string;
 }
