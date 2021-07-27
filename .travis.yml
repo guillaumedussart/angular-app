@@ -1,7 +1,8 @@
 language: node_js
 node_js:
   - "14"
-install: travis_retry npm install
+before_script:
+  - sudo npm install
 script: npm run build
 deploy:
   local-dir: dist/angular-app
