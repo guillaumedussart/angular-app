@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {UserService} from 'src/services/user.service';
-import {error} from "@angular/compiler/src/util";
+import {UserService} from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +9,19 @@ import {error} from "@angular/compiler/src/util";
 })
 export class AppComponent {
   title = 'angular-app';
+  collegues = this.getAllUser();
 
   constructor(private service: UserService) {
   }
-
-  collegues = this.getAllUser();
 
   getAllUser(): any {
     return this.service.findAllUser()
       .then(collegue => collegue.filter(col => col.email).filter(col => col.nom))
       .then(collegues => this.collegues = collegues)
-      .catch((error)=>error);
+      .catch((error) => error);
   }
 
-  updateUser(id:string) {
+  updateUser(id: string) {
     console.log(id)
   }
 }

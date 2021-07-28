@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-card',
@@ -14,13 +14,15 @@ export class CardComponent implements OnInit {
   constructor(private service: UserService) {
   }
 
+
   ngOnInit(): void {
   }
 
   getAllUser(): any {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     return this.service.findAllUser()
       .then(collegue => collegue.filter(col => col.email)
-        .filter(col => col.nom).filter(col => col.photo))
+        .filter(col => col.nom).filter(col => col.photo.match(reg)))
       .then(collegues => this.collegues = collegues)
       .catch((error) => error);
   }

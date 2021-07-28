@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {VoteService} from "../../../services/vote.service";
-import {VoteModel} from "../../../model/vote.model";
+import {VoteService} from "../../services/vote.service";
+import {VoteModel} from "../../model/vote.model";
 
 @Component({
   selector: 'app-opinion',
