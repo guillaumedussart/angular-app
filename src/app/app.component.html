@@ -1,32 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-header></app-header>
-<div style="text-align:center" class="mt-3 mb-3">
+<div class="mt-3 mb-3" style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
-<div *ngIf="collegues">test</div>
 </div>
-<app-card></app-card>
-<!--<div class="container">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nom</th>
-      <th>Prenom</th>
-      <th>email</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let coll of collegues">
-    <tr>
-      <td>{{coll.id}}</td>
-      <td>{{coll.nom}}</td>
-      <td>{{coll.prenom}}</td>
-      <td>{{coll.email}}</td>
-      <td><button class="btn btn-primary" (click)="this.updateUser(coll.id)">Modifier</button></td>
-    </tr>
-    </tbody>
-  </table>
-</div>-->
+
 <router-outlet></router-outlet>

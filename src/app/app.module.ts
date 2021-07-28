@@ -9,6 +9,7 @@ import {NgbdModalBasic} from "./components/modal/modal.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OpinionComponent} from './components/opinion/opinion.component';
 import {CardComponent} from './components/card/card.component';
+import { HistoComponent } from './components/histo/histo.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {CardComponent} from './components/card/card.component';
     HeaderComponent,
     NgbdModalBasic,
     OpinionComponent,
-    CardComponent
+    CardComponent,
+    HistoComponent
   ],
   imports: [
     BrowserModule,

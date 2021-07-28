@@ -8,17 +8,15 @@
         <div class="card" style="width: 18rem;">
           <img alt="Card image cap" class="card-img-top" src="{{coll.photo}}">
           <div class="card-body">
-            <h5 class="card-title">Id : {{coll.id}}</h5>
+            <h5 class="card-title">Pseudo : {{coll.pseudo}}</h5>
             <p class="card-text"></p>
 
             <p class="card-text">Nom : {{coll.nom}}</p>
             <p class="card-text">Prenom : {{coll.prenom}}</p>
-            <p class="card-text">Email : {{coll.email}}</p>
-            <app-opinion [coll]="coll"></app-opinion>
+            <p class="card-text">Score : {{coll.score}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
-

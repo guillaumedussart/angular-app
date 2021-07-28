@@ -1,11 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import {UserModel, UserJSON} from '../model/user.model';
+import {HttpClient} from '@angular/common/http';
+import {UserJSON, UserModel} from '../model/user.model';
 import {config} from '../config/config';
 import {Injectable} from "@angular/core";
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   /**
    * create user
    * @param user
