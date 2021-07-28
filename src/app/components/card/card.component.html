@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-3" *ngFor="let coll of collegues" >
+    <div *ngFor="let coll of collegues" class="col-3">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{coll.photo}}" alt="Card image cap">
+        <img alt="Card image cap" class="card-img-top" src="{{coll.photo}}">
         <div class="card-body">
-          <h5 class="card-title">{{coll.id}}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-          <app-opinion></app-opinion>
+          <h5 class="card-title">Id : {{coll.id}}</h5>
+          <p class="card-text"></p>
+
+          <p class="card-text">Nom : {{coll.nom}}</p>
+          <p class="card-text">Prenom : {{coll.prenom}}</p>
+          <p class="card-text">Email : {{coll.email}}</p>
+          <app-opinion [coll]="coll"></app-opinion>
         </div>
       </div>
     </div>

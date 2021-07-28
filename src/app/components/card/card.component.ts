@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  providers:[UserService]
+  providers: [UserService]
 })
 export class CardComponent implements OnInit {
 
-  ngOnInit(): void {
-  }
+  collegues = this.getAllUser();
+
   constructor(private service: UserService) {
   }
 
-  collegues = this.getAllUser();
+  ngOnInit(): void {
+  }
 
   getAllUser(): any {
     return this.service.findAllUser()
-      .then(collegue => collegue.filter(col => col.email).filter(col => col.nom))
+      .then(collegue => collegue.filter(col => col.email)
+        .filter(col => col.nom).filter(col => col.photo))
       .then(collegues => this.collegues = collegues)
-      .catch((error)=>error);
+      .catch((error) => error);
   }
 }

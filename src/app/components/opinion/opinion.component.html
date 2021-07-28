@@ -1,4 +1,5 @@
 <div class="inline-block">
-  <button>Like</button>
-  <button>Unlike</button>
+  <button (click)="likeUser(coll.id)" class="btn btn-primary">Like</button>
+  <p *ngIf="messageSuccess">{{messageSuccess}}</p>
+  <button class="btn btn-dark">Unlike</button>
 </div>
