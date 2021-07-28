@@ -5,7 +5,7 @@ import {CardComponent} from "./components/card/card.component";
 
 const routes: Routes = [
   {path: '', component: CardComponent},
-  {path: 'historique', component: HistoComponent}
+  {path: 'votes', component: HistoComponent}
 ];
 
 @NgModule({

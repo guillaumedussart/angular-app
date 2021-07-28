@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AvisModel} from "../../model/avis.model";
+import {Component, Input, OnInit} from '@angular/core';
+import {AvisEnum, PostModel, UserModel} from "../../model/avis.model";
 import {DataService} from "../../services/data.service";
 
 @Component({
@@ -8,8 +8,10 @@ import {DataService} from "../../services/data.service";
   styleUrls: ['./histo.component.scss']
 })
 export class HistoComponent implements OnInit {
-  collegues: AvisModel[] = [];
+  collegues: UserModel[] = [];
   messageErr = false;
+  // @ts-ignore
+  @Input() avis: PostModel;
 
   constructor(private dataService: DataService) {
   }
@@ -18,6 +20,10 @@ export class HistoComponent implements OnInit {
     this.dataService.getAllCollegue()
       .then(collegues => this.collegues = collegues)
       .catch(() => this.messageErr = true)
+  }
+
+  giveOpinion(user: UserModel, avis: AvisEnum) {
+    return this.dataService.giveOpinion(user, avis).catch(() => this.messageErr = true);
   }
 
 }

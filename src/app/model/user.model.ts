@@ -1,47 +1,48 @@
 export class UserModel {
-    // @ts-ignore
-    private id: string;
-    // @ts-ignore
-    private nom: string;
-    // @ts-ignore
-    private prenom: string;
-    // @ts-ignore
-    private email: string;
+  // @ts-ignore
+  private id: string;
+  // @ts-ignore
+  private nom: string;
+  // @ts-ignore
+  private prenom: string;
+  // @ts-ignore
+  private email: string;
 
 
-    constructor() {
-    }
+  constructor() {
+  }
 
-    public getId(): string {
-        return this.id;
-    }
+  public getId(): string {
+    return this.id;
+  }
 
-    setId(id: string) {
-        this.id = id;
-    }
+  setId(id: string) {
+    this.id = id;
+  }
 
-    getNom(): string {
-        return this.nom;
-    }
+  getNom(): string {
+    return this.nom;
+  }
 
-    setNom(nom: string) {
-        this.nom = nom;
-    }
+  setNom(nom: string) {
+    this.nom = nom;
+  }
 
-    getPrenom(): string {
-        return this.prenom;
-    }
+  getPrenom(): string {
+    return this.prenom;
+  }
 
-    setPrenom(prenom: string) {
-        this.prenom = prenom;
-    }
-    getEmail(): string {
-        return this.email;
-    }
+  setPrenom(prenom: string) {
+    this.prenom = prenom;
+  }
 
-    setEmail(email: string) {
-        this.email = email;
-    }
+  getEmail(): string {
+    return this.email;
+  }
+
+  setEmail(email: string) {
+    this.email = email;
+  }
 
 }
 
@@ -50,11 +51,13 @@ export interface UserJSON {
   nom: string;
   prenom: string;
   email: string;
-  photo:string;
+  photo: string;
 }
 
 export interface UserCard {
-  pseudo:string;
-  score:number;
-  photoUrl:string;
+  pseudo: string;
+  nom: string;
+  prenom: string;
+  score: number;
+  photoUrl: string;
 }

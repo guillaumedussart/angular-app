@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OpinionComponent} from './components/opinion/opinion.component';
 import {CardComponent} from './components/card/card.component';
 import { HistoComponent } from './components/histo/histo.component';
+import { AvisComponent } from './components/avis/avis.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HistoComponent } from './components/histo/histo.component';
     NgbdModalBasic,
     OpinionComponent,
     CardComponent,
-    HistoComponent
+    HistoComponent,
+    AvisComponent
   ],
   imports: [
     BrowserModule,
