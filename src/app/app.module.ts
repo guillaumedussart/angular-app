@@ -11,6 +11,7 @@ import {OpinionComponent} from './components/opinion/opinion.component';
 import {CardComponent} from './components/card/card.component';
 import { HistoComponent } from './components/histo/histo.component';
 import { AvisComponent } from './components/avis/avis.component';
+import { ListAvisComponent } from './components/list-avis/list-avis.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AvisComponent } from './components/avis/avis.component';
     OpinionComponent,
     CardComponent,
     HistoComponent,
-    AvisComponent
+    AvisComponent,
+    ListAvisComponent
   ],
   imports: [
     BrowserModule,

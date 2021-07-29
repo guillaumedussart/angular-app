@@ -4,6 +4,7 @@
 <ng-template #template>
   <div class="container">
     <div class="row">
+      <div *ngIf="messageSuc" class="text-success">vote fait !</div>
       <div *ngFor="let coll of collegues" class="col-3">
         <div class="card" style="width: 18rem;">
           <img alt="Card image cap" class="card-img-top" src="{{coll.photo}}">
@@ -19,6 +20,7 @@
               [dislikeDisable]="coll.score <= -1000"
               [likeDisable]="coll.score >= 1000"
             ></app-avis>
+
           </div>
         </div>
       </div>

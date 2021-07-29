@@ -7,11 +7,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  // @ts-ignore
+  messageSuc: string = localStorage.getItem("messageSuc");
 
   constructor(public router: Router) {
   }
 
   ngOnInit() {
+
   }
 
   reloadCurrentPage() {

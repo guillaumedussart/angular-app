@@ -10,6 +10,11 @@ export interface UserModel {
   score: number
 }
 
+export interface UserModelScore {
+  collegue: UserModel,
+  avis: AvisEnum
+}
+
 
 export interface PostModel {
   pseudo: string,
