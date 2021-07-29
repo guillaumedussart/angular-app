@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {config} from '../config/config';
 import {AvisEnum, PostModel, UserModel, UserModelScore} from "../model/avis.model";
+import {Subscription} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,9 @@ import {AvisEnum, PostModel, UserModel, UserModelScore} from "../model/avis.mode
 export class DataService {
   // @ts-ignore
   model: PostModel;
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
 
   constructor(private http: HttpClient) {
   }
@@ -32,12 +36,7 @@ export class DataService {
     return response.json();
   }
 
-  async deleteOpinion(vote: UserModelScore): Promise<UserModelScore> {
-    const response = await fetch(config.baseUrlApiAvisVote, {
-      method: 'delete',
-      body: JSON.stringify(vote),
-      headers: {'Content-type': 'application/json'}
-    })
-    return response.json();
+  async deleteOpinion(vote: UserModelScore): Promise<Subscription> {
+    return this.http.delete<UserModelScore>(config.baseUrlApiAvisVote, this.httpOptions).subscribe(data => console.log(data));
   }
 }

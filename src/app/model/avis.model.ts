@@ -1,7 +1,3 @@
-/**
- *"avis": "AIMER",
- "dateCreation": "2021-07-28T14:15:09.507056Z"
- */
 export interface UserModel {
   pseudo: string,
   nom: string,

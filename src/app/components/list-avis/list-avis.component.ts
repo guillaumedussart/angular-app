@@ -21,7 +21,6 @@ export class ListAvisComponent implements OnInit {
   }
 
   deleteVote(vote: UserModelScore) {
-    console.log(vote)
     this.dataService.deleteOpinion(vote).then((res) => console.log(res));
   }
 }
