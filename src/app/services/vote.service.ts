@@ -1,10 +1,10 @@
 import {HttpClient} from '@angular/common/http';
-import {config} from '../config/config';
 
 import {Injectable} from "@angular/core";
 import {VoteModel} from "../model/vote.model";
 import {UserService} from "./user.service";
 import {UserModel} from "../model/user.model";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class VoteService {
@@ -15,7 +15,7 @@ export class VoteService {
 
   async createVote(vote: VoteModel): Promise<VoteModel> {
     const user = this.userService.findUserById(vote.getCollegueId());
-    const response = await fetch(config.baseUrlApiVote, {
+    const response = await fetch(environment.baseUrlApiVote, {
         method: 'post',
         body: JSON.stringify(vote),
         headers: {'Content-Type': 'application/json'}
@@ -29,7 +29,7 @@ export class VoteService {
    }*/
 
   async findVoteById(id: string) {
-    const response = await fetch(config.baseUrlApiVote + id);
+    const response = await fetch(environment.baseUrlApiVote + id);
     const data: UserModel = await response.json();
     return data;
   }
