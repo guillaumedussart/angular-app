@@ -15,12 +15,13 @@ export class ListAvisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getAllCollegueScore()
-      .then(collegues => this.collegues = collegues)
-      .catch(() => this.messageErr = true)
+    this.dataService.getAllCollegueScore().subscribe(
+      collegues => this.collegues = collegues,
+      () => this.messageErr = true
+    );
   }
 
   deleteVote(vote: UserModelScore) {
-    this.dataService.deleteOpinion(vote).then((res) => console.log(res));
+    this.dataService.deleteOpinion(vote).subscribe(data => console.log(data));
   }
 }

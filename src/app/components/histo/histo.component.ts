@@ -23,12 +23,16 @@ export class HistoComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.getAllCollegue()
-      .then(collegues => this.collegues = collegues)
-      .catch(() => this.messageErr = true)
+      .subscribe(
+        collegues => this.collegues = collegues,
+        () => this.messageErr = true)
   }
 
   giveOpinion(user: UserModel, avis: AvisEnum) {
-    this.dataService.giveOpinion(user, avis).then(() => localStorage.setItem("messageSuc", "Vote enregistre")).catch(() => this.messageErr = true);
+    this.dataService.giveOpinion(user, avis).subscribe(
+      () => localStorage.setItem("messageSuc", "Vote enregistre"),
+      () => this.messageErr = true
+    );
 
     this.ngOnInit();
     //this.router.navigate(["HistoComponent"]);

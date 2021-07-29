@@ -102,7 +102,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/main.js"
+            ]
           }
         }
       }
