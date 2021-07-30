@@ -5,7 +5,7 @@ before_script:
   - npm install
 script:
   - npm run build
-  - cp
+  - cp dist/angular-app dist/angular-app/404.html
 deploy:
   local-dir: dist/angular-app
   provider: pages
