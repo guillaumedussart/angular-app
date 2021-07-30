@@ -1,32 +1,54 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserJSON, UserModel} from '../model/user.model';
 import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
+import {Observable, Subject} from "rxjs";
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+
+  private subjectCurrentUser = new Subject<UserJSON>();
+
   constructor(private http: HttpClient) {
+  }
+
+  get currentUser(): Observable<UserJSON> {
+    return this.subjectCurrentUser.asObservable();
+  }
+
+  publishCurantUser(userChoise: UserJSON) {
+    this.subjectCurrentUser.next(userChoise);
   }
 
   /**
    * create user
    * @param user
    */
-  async createUser(user: UserJSON): Promise<UserModel> {
-    const model = new UserModel();
-    model.setId(user.id);
-    model.setNom(user.nom);
-    model.setPrenom(user.prenom);
-    const response = await fetch(environment.baseUrlApiCollegue, {
-        method: 'post',
-        body: JSON.stringify(model),
-        headers: {'Content-Type': 'application/json'}
-      }
+  createUser(user: UserJSON): Observable<UserJSON> {
+    const user$ = this.http.post<UserJSON>(environment.baseUrlApiCollegue, {user}, this.httpOptions);
+    return user$.pipe(
+      tap(
+        userTap => this.publishCurantUser({
+          id: userTap.id,
+          nom: userTap.nom,
+          prenom: userTap.prenom,
+          societe: userTap.societe,
+          email: userTap.email,
+          photo: userTap.photo,
+          departement: userTap.departement,
+          sexe: userTap.sexe,
+          password: userTap.password,
+          adresse: userTap.adresse,
+          dateNaissance: userTap.dateNaissance
+        }))
     );
-    return response.json();
   }
 
   /**

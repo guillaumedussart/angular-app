@@ -19,6 +19,9 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.collegues = this.getAllUser();
+    this.service.currentUser.subscribe(
+      newUser => this.collegues.unshift(newUser)
+    );
   }
 
   getAllUser(): Promise<UserJSON[] | boolean> {

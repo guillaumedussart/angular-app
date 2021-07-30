@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {fromEvent, Observable} from "rxjs";
-import {map, mergeMap} from "rxjs/operators";
 import {UserModel} from "../../model/avis.model";
 import {DataService} from "../../services/data.service";
+import {map, mergeMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-header',
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   getVotePage() {
-    this.router.navigate(["/votes"])
+    this.router.navigateByUrl("/votes")
   }
 
   getHomePage() {
@@ -49,9 +49,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         map(kEvt => (<HTMLInputElement>kEvt.target).value),
         mergeMap(valeurSaisie => this.dataService.searchCollegue(valeurSaisie)),
       );
-  }
-
-  reloadCurrentPage() {
-    window.location.reload();
   }
 }

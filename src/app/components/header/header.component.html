@@ -26,8 +26,8 @@
   </header>
   <p *ngIf="messageSuc" class="text-success">{{messageSuc}}</p>
 </div>
-<ng-template *ngIf="collegue$ | async as collegues">
-  <div *ngFor="let coll as collegues">
-    {{coll.nom}}
-  </div>
-</ng-template>
+<p>
+  <ngb-alert [dismissible]="false">
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+  </ngb-alert>
+</p>

@@ -1,41 +1,100 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Ajouter un collegue</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="formUser" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit($event)" [formGroup]="formUser">
     <div class="modal-body">
 
       <div class="form-group">
         <label for="id-user">Id</label>
-        <input type="text" class="form-control" id="id-user" placeholder="Id" value="id" formControlName="id">
+        <input class="form-control" formControlName="id" id="id-user" placeholder="Id" required type="text" value="id">
+        <div *ngIf="submitted && formValid.id.errors" class="text-danger text-errors-id">
+          <div *ngIf="formValid.id.errors.required">Id est requis</div>
+          <div *ngIf="formValid.id.errors.maxLength">Id ne dois pas depasse 5 caracteres</div>
+        </div>
       </div>
-      <div class="form-group mt-3">
+      
+      <div class="form-group mt-2">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email"
-               formControlName="email">
-      </div>
-      <div class="form-group mt-3">
-        <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom" placeholder="Nom" value="nom" formControlName="nom">
-      </div>
-      <div class="form-group mt-3">
-        <label for="prenom">Prenom</label>
-        <input type="text" class="form-control" id="prenom" placeholder="Prenom" value="prenom"
-               formControlName="prenom">
+        <input class="form-control" formControlName="email" id="email" placeholder="Email"
+               type="email">
       </div>
 
+      <div class="form-group mt-2">
+        <label for="nom">Nom</label>
+        <input class="form-control" formControlName="nom" id="nom" placeholder="Nom" type="text" value="nom">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="prenom">Prenom</label>
+        <input class="form-control" formControlName="prenom" id="prenom" placeholder="Prenom" type="text"
+               value="prenom">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="societe">Societe</label>
+        <input class="form-control" formControlName="societe" id="societe" placeholder="Societe" type="text"
+               value="societe">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="dateNaissance">date de naissance</label>
+        <input class="form-control" formControlName="dateNaissance" id="dateNaissance" placeholder="date de naissance"
+               type="date"
+               value="dateNaissance">
+      </div>
+
+
+      <div class="form-group mt-2">
+        <label for="sexe">sexe</label>
+        <select class="form-control" formControlName="sexe" id="sexe" name="sexe">
+          <option value="female">Femme</option>
+          <option value="male">Homme</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="adresse">Adresse</label>
+        <input class="form-control" formControlName="adresse" id="adresse" placeholder="adresse"
+               type="text"
+               value="adresse">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="password">Mot de passe</label>
+        <input class="form-control" formControlName="password" id="password" placeholder="password"
+               type="password">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="photo">Photo</label>
+        <input class="form-control" formControlName="photo" id="photo" placeholder="url de la photo"
+               type="text"
+               value="photo">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="departement">departement</label>
+        <select class="form-control" formControlName="departement" id="departement" name="departement">
+          <option value="DSI/INDUS/Solaris">DSI/INDUS/Solaris</option>
+          <option value="DSI/DEV/PHP">DSI/DEV/PHP</option>
+          <option value="DSI/DEV/Java">DSI/DEV/Java</option>
+          <option value="DSI/INDUS/Windows">DSI/INDUS/Windows</option>
+          <option value="DSI/INDUS/Linux">DSI/INDUS/Linux</option>
+        </select>
+      </div>
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-dark" (click)="modal.close('Save click')">Fermer</button>
-      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Sauvegarder</button>
+      <button (click)="modal.close('Save click')" class="btn btn-dark" type="button">Fermer</button>
+      <button class="btn btn-primary" type="submit">Sauvegarder</button>
     </div>
   </form>
+  {{formUser.status}}
 </ng-template>
-
-<button class="btn btn-primary" (click)="open(content)">Ajouter un collegue
+<button (click)="open(content)" class="btn btn-primary">Ajouter un collegue
 </button>
 

@@ -103,7 +103,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/main.js"
+              "src/assets/main.js",
+              "node_modules/crypto-js/crypto-js.js"
             ]
           }
         }

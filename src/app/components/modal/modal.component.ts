@@ -1,26 +1,49 @@
-import {Component} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from "../../services/user.service";
+
 
 @Component({
   selector: 'ngbd-modal-basic',
   templateUrl: './modal.component.html'
 })
-export class NgbdModalBasic {
+
+export class NgbdModalBasic implements OnInit {
+
   closeResult = '';
+  submitted = false;
+  formUser!: FormGroup;
+
 
   constructor(
     private modalService: NgbModal,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {
   }
 
-  formUser = this.formBuilder.group({
-    id: '',
-    nom: '',
-    prenom: '',
-    email: ''
-  });
+  get formValid() {
+    return this.formUser.controls;
+  }
+
+
+  ngOnInit(): void {
+    this.formUser = this.formBuilder.group({
+      id: [null, [Validators.required, Validators.maxLength(5)]],
+      nom: [null, [Validators.required]],
+      prenom: [null, Validators.required],
+      societe: [null, Validators.required],
+      email: [null, Validators.required, Validators.email],
+      dateNaissance: [null, Validators.required],
+      sexe: [null, Validators.required],
+      adresse: [null, Validators.required],
+      password: [null, Validators.required],
+      photo: [null, Validators.required],
+      departement: [null, Validators.required],
+    });
+  }
+
 
   // @ts-ignore
   open(content) {
@@ -31,6 +54,20 @@ export class NgbdModalBasic {
     });
   }
 
+  onSubmit($event: any): void {
+    $event.preventDefault();
+    this.submitted = true;
+
+
+    if (this.formUser.invalid) {
+      console.warn('Your order has been submitted', this.formUser.value);
+      return;
+    }
+    this.userService.createUser(this.formUser.value);
+    this.formUser.reset();
+    this.modalService.dismissAll();
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -39,10 +76,5 @@ export class NgbdModalBasic {
     } else {
       return `with: ${reason}`;
     }
-  }
-
-  onSubmit(): void {
-    console.warn('Your order has been submitted', this.formUser.value);
-    this.formUser.reset();
   }
 }
