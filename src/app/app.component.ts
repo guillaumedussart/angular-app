@@ -21,7 +21,4 @@ export class AppComponent {
       .catch((error) => error);
   }
 
-  updateUser(id: string) {
-    console.log(id)
-  }
 }

@@ -13,9 +13,8 @@
         </a>
       </li>
       <li>
-        <a *ngIf="router.url != '/list-votes'" href="/list-votes">
-          <button class="btn btn-dark">Liste des votes</button>
-        </a>
+        <button (click)="getListPage()" *ngIf="router.url != '/list-votes'" class="btn btn-dark">Liste des votes
+        </button>
       </li>
       <li>
         <ngbd-modal-basic></ngbd-modal-basic>
@@ -23,7 +22,15 @@
       <li>
         <button (click)="reloadCurrentPage()" class="btn bg-danger">Recharger</button>
       </li>
+      <li>
+        <input #search type="text">
+      </li>
     </ul>
   </header>
   <p *ngIf="messageSuc" class="text-success">{{messageSuc}}</p>
 </div>
+<ng-template *ngIf="collegue$ | async as collegues">
+  <div *ngFor="let coll as collegues">
+    {{coll.nom}}
+  </div>
+</ng-template>

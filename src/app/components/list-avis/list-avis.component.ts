@@ -8,8 +8,9 @@ import {UserModelScore} from "../../model/avis.model";
   styleUrls: ['./list-avis.component.scss']
 })
 export class ListAvisComponent implements OnInit {
-  collegues: UserModelScore[] = [];
+  //collegues: UserModelScore[] = [];
   messageErr = false;
+  collegues!: UserModelScore[];
 
   constructor(private dataService: DataService) {
   }
@@ -18,6 +19,9 @@ export class ListAvisComponent implements OnInit {
     this.dataService.getAllCollegueScore().subscribe(
       collegues => this.collegues = collegues,
       () => this.messageErr = true
+    );
+    this.dataService.currentVote.subscribe(
+      newVote => this.collegues.unshift(newVote)
     );
   }
 

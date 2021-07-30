@@ -1,18 +1,17 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AvisEnum, PostModel, UserModel, UserModelScore} from "../../model/avis.model";
 import {DataService} from "../../services/data.service";
 import {Router} from "@angular/router";
-import {fromEvent, Observable} from "rxjs";
-import {map, mergeMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-histo',
   templateUrl: './histo.component.html',
   styleUrls: ['./histo.component.scss']
 })
-export class HistoComponent implements OnInit, AfterViewInit {
-  @ViewChild('search') searchInput!: ElementRef;
-  collegue$!: Observable<UserModel[]>;
+
+export class HistoComponent implements OnInit {
+
+
   collegues: UserModel[] = [];
   messageErr = false;
   @Input()
@@ -21,33 +20,35 @@ export class HistoComponent implements OnInit, AfterViewInit {
   @Input() avis: PostModel;
   votes!: UserModelScore[];
 
+
+  /**
+   *
+   * @param dataService
+   * @param router
+   */
   constructor(private dataService: DataService,
               public router: Router
   ) {
   }
 
-  ngAfterViewInit(): void {
-    this.collegue$ = fromEvent<KeyboardEvent>(this.searchInput.nativeElement, 'keyup')
-      .pipe(
-        map(kEvt => (<HTMLInputElement>kEvt.target).value),
-        mergeMap(valeurSaisie => this.dataService.searchCollegue(valeurSaisie)),
-      );
 
-  }
-
-
+  /**
+   *
+   */
   ngOnInit(): void {
     this.dataService.getAllCollegue()
       .subscribe(
         collegues => this.collegues = collegues,
         () => this.messageErr = true
       );
-    this.dataService.getAllCollegueScore().subscribe(
-      votes => this.votes = votes,
-      () => this.messageErr = true
-    );
+
   }
 
+  /**
+   *
+   * @param user
+   * @param avis
+   */
   giveOpinion(user: UserModel, avis: AvisEnum) {
 
     this.dataService.giveOpinion(user, avis).subscribe(
@@ -56,12 +57,16 @@ export class HistoComponent implements OnInit, AfterViewInit {
     );
     this.dataService.getAllCollegueScore().subscribe(
       votes => this.votes = votes);
-    this.dataService.publierUserCourant(this.votes);
-    console.log(this.votes)
+    //console.log(this.votes)
+    //this.router.navigate(['/list-votes'])
     this.ngOnInit();
     //this.router.navigate(["HistoComponent"]);
   }
 
+  /**
+   *
+   * @param vote
+   */
   deleteVote(vote: UserModelScore) {
     this.dataService.deleteOpinion(vote).subscribe(data => console.log(data));
   }

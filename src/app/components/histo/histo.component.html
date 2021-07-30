@@ -27,29 +27,5 @@
       </div>
     </div>
   </div>
-
-
-  <div class="container">
-    <div class="row">
-      <div *ngFor="let coll of votes" class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-3">
-            <img alt="Card image cap" class="card-img-top" src="{{coll.collegue.photo}}">
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <h5 class="card-title">{{coll.collegue.prenom}}</h5>
-              <p *ngIf="coll.avis == 'AIMER'" class="card-text">{{coll.collegue.prenom}} est aime, son score est
-                de {{coll.collegue.score}} :-)</p>
-              <p *ngIf="coll.avis == 'DETESTER'" class="card-text">{{coll.collegue.prenom}} est deteste, son score est
-                de {{coll.collegue.score}} -:(</p>
-              <button (click)="deleteVote(coll)" class="btn btn-danger">Supprimer</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </ng-template>
-
-
+<app-list-avis></app-list-avis>
