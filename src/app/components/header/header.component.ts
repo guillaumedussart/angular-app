@@ -32,6 +32,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.navigate(["/list-votes"]);
   }
 
+  getVotePage() {
+    this.router.navigate(["/votes"])
+  }
+
+  getHomePage() {
+    this.router.navigate(["/"])
+  }
+
   /**
    *
    */

@@ -8,8 +8,8 @@
     </a>
     <ul class="nav nav-pills">
       <li>
-        <a *ngIf="router.url != '/votes'" href="/votes">
-          <button class="btn btn-dark">Votes</button>
+        <a href="/votes">
+          <button (click)="getVotePage()" *ngIf="router.url != '/votes'" class="btn btn-dark">Votes</button>
         </a>
       </li>
       <li>
@@ -18,9 +18,6 @@
       </li>
       <li>
         <ngbd-modal-basic></ngbd-modal-basic>
-      </li>
-      <li>
-        <button (click)="reloadCurrentPage()" class="btn bg-danger">Recharger</button>
       </li>
       <li>
         <input #search type="text">
