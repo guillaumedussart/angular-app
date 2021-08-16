@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
 import {Observable, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
+import {FormControl} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserService {
   };
 
   private subjectCurrentUser = new Subject<UserJSON>();
+  private searchResults = new Subject<Array<UserJSON>>();
 
   constructor(private http: HttpClient) {
   }
@@ -23,9 +25,23 @@ export class UserService {
     return this.subjectCurrentUser.asObservable();
   }
 
+  get resultUsers() {
+    return this.searchResults.asObservable();
+  }
+
   publishCurantUser(userChoise: UserJSON) {
     this.subjectCurrentUser.next(userChoise);
   }
+
+  /**
+   *
+   * @param value
+   */
+  search(value: FormControl) {
+
+    return this.http.get<UserJSON[]>(environment.baseUrlApiCollegueSearch + value);
+  }
+
 
   /**
    * create user
@@ -59,6 +75,10 @@ export class UserService {
     /*const response = await fetch(config.baseUrlApiCollegue);
     const data: UserJSON[] = await response.json();
     return data.filter(col => col.nom).filter(col => col.email);*/
+  }
+
+  getUsers(): Observable<UserJSON[]> {
+    return this.http.get<UserJSON[]>(environment.baseUrlApiCollegue);
   }
 
   /**

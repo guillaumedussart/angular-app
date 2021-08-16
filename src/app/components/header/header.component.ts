@@ -1,26 +1,24 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
-import {fromEvent, Observable} from "rxjs";
-import {UserModel} from "../../model/avis.model";
-import {DataService} from "../../services/data.service";
-import {map, mergeMap} from "rxjs/operators";
+import {UserJSON} from "../../model/user.model";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
   // @ts-ignore
   messageSuc: string = localStorage.getItem("messageSuc");
+  users!: UserJSON[];
+  // @ts-ignore
+  @Input() searchModel;
 
-  @ViewChild('search') searchInput!: ElementRef;
-
-  collegue$!: Observable<UserModel[]>;
+  @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
+  @Output() searchEvent = new EventEmitter();
 
   constructor(
-    public router: Router,
-    private dataService: DataService
+    public router: Router
   ) {
   }
 
@@ -40,14 +38,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.router.navigate(["/"])
   }
 
-  /**
-   *
-   */
-  ngAfterViewInit(): void {
-    this.collegue$ = fromEvent<KeyboardEvent>(this.searchInput.nativeElement, 'keyup')
-      .pipe(
-        map(kEvt => (<HTMLInputElement>kEvt.target).value),
-        mergeMap(valeurSaisie => this.dataService.searchCollegue(valeurSaisie)),
-      );
+  updateSearchModel(value: string) {
+    this.searchModel = value;
+    this.searchModelChange.emit(this.searchModel);
   }
 }

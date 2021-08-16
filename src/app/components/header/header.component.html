@@ -8,9 +8,10 @@
     </a>
     <ul class="nav nav-pills">
       <li>
-        <a href="/votes">
-          <button (click)="getVotePage()" *ngIf="router.url != '/votes'" class="btn btn-dark">Votes</button>
-        </a>
+        <app-search-bar></app-search-bar>
+      </li>
+      <li>
+        <button (click)="getVotePage()" *ngIf="router.url != '/votes'" class="btn btn-dark">Votes</button>
       </li>
       <li>
         <button (click)="getListPage()" *ngIf="router.url != '/list-votes'" class="btn btn-dark">Liste des votes
@@ -19,15 +20,12 @@
       <li>
         <ngbd-modal-basic></ngbd-modal-basic>
       </li>
-      <li>
-        <input #search type="text">
-      </li>
     </ul>
   </header>
   <p *ngIf="messageSuc" class="text-success">{{messageSuc}}</p>
 </div>
-<p>
+<!--<p>
   <ngb-alert [dismissible]="false">
     <strong>Warning!</strong> Better check yourself, you're not looking too good.
   </ngb-alert>
-</p>
+</p>-->

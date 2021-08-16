@@ -11,6 +11,8 @@ export class CardComponent implements OnInit {
 
   collegues: UserJSON[] = [];
   messageErr = false;
+  searchTerm!: string;
+  searchModel!: string;
 
   constructor(private service: UserService) {
   }
@@ -32,5 +34,9 @@ export class CardComponent implements OnInit {
         .filter(col => col.photo.match(reg)))
       .then(collegues => this.collegues = collegues)
       .catch(() => this.messageErr = true);
+  }
+
+  search(value: string): void {
+    this.collegues = this.collegues.filter((val) => val.nom.toLowerCase().includes(value));
   }
 }

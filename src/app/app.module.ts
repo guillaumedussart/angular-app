@@ -9,9 +9,13 @@ import {NgbdModalBasic} from "./components/modal/modal.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OpinionComponent} from './components/opinion/opinion.component';
 import {CardComponent} from './components/card/card.component';
-import { HistoComponent } from './components/histo/histo.component';
-import { AvisComponent } from './components/avis/avis.component';
-import { ListAvisComponent } from './components/list-avis/list-avis.component';
+import {HistoComponent} from './components/histo/histo.component';
+import {AvisComponent} from './components/avis/avis.component';
+import {ListAvisComponent} from './components/list-avis/list-avis.component';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {SearchBarComponent} from './search-bar/search-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { ListAvisComponent } from './components/list-avis/list-avis.component';
     CardComponent,
     HistoComponent,
     AvisComponent,
-    ListAvisComponent
+    ListAvisComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +35,14 @@ import { ListAvisComponent } from './components/list-avis/list-avis.component';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+}

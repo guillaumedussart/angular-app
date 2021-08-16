@@ -72,6 +72,7 @@ export interface UserJSON {
   password: string;
   photo: string;
   departement: string;
+
 }
 
 export interface UserCard {
