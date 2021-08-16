@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from '../../services/user.service';
@@ -15,21 +16,34 @@ export class SearchBarComponent implements OnInit {
 
   @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.queryField.valueChanges
       .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe((queryField: any) => {
-        this.userService.search(queryField).subscribe((result: UserJSON[]) => {
-          this.results = result
-            .filter((v) => v.nom)
-            .filter((v) => v.email)
-            .filter((v) => v.photo)
-            .filter((v) => v.prenom)
-            .filter((col) => col.photo.match(reg));
-        });
+        if (queryField) {
+          this.userService
+            .search(queryField)
+            .subscribe((result: UserJSON[]) => {
+              this.results = result
+                .filter((v) => v.nom)
+                .filter((v) => v.email)
+                .filter((v) => v.photo)
+                .filter((v) => v.prenom)
+                .filter((col) => col.photo.match(reg));
+            });
+        } else {
+          this.results = [];
+        }
       });
+  }
+/**
+ *get page detail user
+ * @param id
+ */
+  getDetails(id: string) {
+    this.router.navigate(['/detail', id]);
   }
 }

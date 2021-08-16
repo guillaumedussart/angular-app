@@ -47,7 +47,7 @@
 
 .filter-select {
   width: 90%;
-  list-style: none;
+  //list-style: none;
   font-size: 1.1em;
   color: rgb(105, 105, 105);
   border: 1px solid #ccc;
@@ -84,14 +84,8 @@
   padding: 5px 10px;
 }
 
-.filter-select-list p {
-
-  line-height: 10;
-}
-
 .artist-name {
   display: inline-block;
-  position: absolute;
 }
 
 .filter-select-list:hover {

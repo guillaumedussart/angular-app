@@ -4,7 +4,7 @@
   </div>
   <ul class="filter-select">
     <li *ngFor="let result of results" class="filter-select-list">
-      <p class="artist-name">{{result.nom}} {{result.prenom}}</p>
+      <p class="artist-name" (click)="getDetails(result.id)">{{result.nom}} {{result.prenom}}</p>
     </li>
   </ul>
 </section>

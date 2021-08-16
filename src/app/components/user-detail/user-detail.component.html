@@ -1,5 +1,45 @@
-<p>user-detail works!</p>
-<p>{{user.nom}}</p>
-<p>{{user.prenom}}</p>
-<p>{{user.adresse}}</p>
+<div class="container">
+  <h1>{{user.prenom}} {{user.nom.toUpperCase()}}</h1>
 
+  <form (ngSubmit)="onSubmit($event)" [formGroup]="formUser">
+
+    <div class="row">
+
+      <div class="col-6">
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+            formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="nom" formControlName="nom" name="nom">
+        </div>
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prenom</label>
+          <input type="text" class="form-control" id="prenom" formControlName="prenom">
+        </div>
+      </div>
+      <div class="col-6">
+
+        <div class="mb-3">
+          <label for="societe" class="form-label">Societe</label>
+          <input type="text" class="form-control" id="societe" formControlName="societe">
+        </div>
+        <div class="mb-3">
+          <label for="photo" class="form-label">Photo</label>
+          <input type="text" class="form-control" id="photo" formControlName="photo">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+
+</div>
