@@ -46,19 +46,20 @@
 }
 
 .filter-select {
-  width: 80%;
+  width: 90%;
   list-style: none;
   font-size: 1.1em;
   color: rgb(105, 105, 105);
   border: 1px solid #ccc;
   border-top: none;
   position: absolute;
-  left: 25%;
+  left: 5%;
   top: calc(50% + 25px);
-  max-height: calc(50% - 15px);
-  height: 500px;
+  max-height: 500px;
+  //height: 500px;
   overflow-y: auto;
   background: #fff;
+  z-index: 50;
 }
 
 .filter-select-list img {
@@ -81,6 +82,11 @@
 .filter-select-list {
   cursor: pointer;
   padding: 5px 10px;
+}
+
+.filter-select-list p {
+
+  line-height: 10;
 }
 
 .artist-name {

@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div *ngFor="let coll of collegues" class="col-3">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;" (click)="getDetails(coll.id)">
           <img alt="Card image cap" class="card-img-top" src="{{coll.photo}}">
           <div class="card-body">
             <h5 class="card-title">Id : {{coll.id}}</h5>
@@ -21,4 +21,3 @@
     </div>
   </div>
 </ng-template>
-

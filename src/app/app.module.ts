@@ -15,6 +15,8 @@ import {ListAvisComponent} from './components/list-avis/list-avis.component';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {SearchBarComponent} from './search-bar/search-bar.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {SearchBarComponent} from './search-bar/search-bar.component';
     HistoComponent,
     AvisComponent,
     ListAvisComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    PageNotFoundComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
