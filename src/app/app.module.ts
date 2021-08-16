@@ -14,7 +14,7 @@ import {AvisComponent} from './components/avis/avis.component';
 import {ListAvisComponent} from './components/list-avis/list-avis.component';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {SearchBarComponent} from './search-bar/search-bar.component';
+import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 

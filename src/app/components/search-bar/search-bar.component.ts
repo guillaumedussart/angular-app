@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { UserJSON } from '../model/user.model';
+import { UserService } from '../../services/user.service';
+import { UserJSON } from '../../model/user.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
