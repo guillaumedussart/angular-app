@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UserJSON } from '../../model/user.model';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
@@ -23,25 +25,44 @@ export class CardComponent implements OnInit {
       this.collegues.unshift(newUser)
     );
   }
-
-  getAllUser(): Promise<UserJSON[] | boolean> {
+  /**
+   *
+   * @returns all users by filter email, nom, photo
+   */
+  getAllUser() {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     return this.service
       .findAllUser()
-      .then((collegue) =>
-        collegue
-          .filter((col) => col.email)
-          .filter((col) => col.nom)
-          .filter((col) => col.photo.match(reg))
+      .pipe(
+        map((items) =>
+          items
+            .filter((coll) => coll.email)
+            .filter((coll) => coll.nom)
+            .filter((col) => col.photo.match(reg))
+        )
       )
-      .then((collegues) => (this.collegues = collegues))
-      .catch(() => (this.messageErr = true));
+      .subscribe((collegues) => (this.collegues = collegues));
+    // .then((collegue) =>
+    //   collegue
+    //     .filter((col) => col.email)
+    //     .filter((col) => col.nom)
+    //     .filter((col) => col.photo.match(reg))
+    // )
+    // .then((collegues) => (this.collegues = collegues))
+    // .catch(() => (this.messageErr = true));
   }
-
+  /**
+   *navigate for user detail
+   * @param id
+   *
+   */
   getDetails(id: string) {
     this.router.navigate(['/detail', id]);
   }
-
+  /**
+   *search with filter
+   * @param value
+   */
   search(value: string): void {
     this.collegues = this.collegues.filter((val) =>
       val.nom.toLowerCase().includes(value)

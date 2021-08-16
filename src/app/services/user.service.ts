@@ -73,10 +73,11 @@ export class UserService {
   /**
    * find all user
    */
-  async findAllUser(): Promise<UserJSON[]> {
-    return this.http
-      .get<UserJSON[]>(environment.baseUrlApiCollegue)
-      .toPromise();
+  findAllUser(): Observable<UserJSON[]> {
+    return this.http.get<UserJSON[]>(
+      environment.baseUrlApiCollegue,
+      this.httpOptions
+    );
     /*const response = await fetch(config.baseUrlApiCollegue);
     const data: UserJSON[] = await response.json();
     return data.filter(col => col.nom).filter(col => col.email);*/

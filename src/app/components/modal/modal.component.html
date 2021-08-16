@@ -12,73 +12,96 @@
         <label for="id-user">Id</label>
         <input class="form-control" formControlName="id" id="id-user" placeholder="Id" required type="text" value="id">
         <div *ngIf="submitted && formValid.id.errors" class="text-danger text-errors-id">
-          <div *ngIf="formValid.id.errors.required">Id est requis</div>
-          <div *ngIf="formValid.id.errors.maxLength">Id ne dois pas depasse 5 caracteres</div>
+          <div *ngIf="formValid.id.errors.required">Le champ id est requis</div>
+          <div *ngIf="formValid.id.errors.maxLength">Le champ id ne doit pas depasse 5 caracteres</div>
         </div>
       </div>
-      
+
       <div class="form-group mt-2">
         <label for="email">Email address</label>
-        <input class="form-control" formControlName="email" id="email" placeholder="Email"
-               type="email">
+        <input class="form-control" formControlName="email" id="email" placeholder="Email" type="email">
+        <div *ngIf="submitted && formValid.email.errors" class="text-danger text-errors-email">
+          <div *ngIf="formValid.email.errors.required">Le champ email est requis</div>
+          <div *ngIf="formValid.email.errors.email">Le champ email doit etre un email valide</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="nom">Nom</label>
         <input class="form-control" formControlName="nom" id="nom" placeholder="Nom" type="text" value="nom">
+        <div *ngIf="submitted && formValid.nom.errors" class="text-danger text-errors-nom">
+          <div *ngIf="formValid.nom.errors.required">Le champ nom est requis</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="prenom">Prenom</label>
         <input class="form-control" formControlName="prenom" id="prenom" placeholder="Prenom" type="text"
-               value="prenom">
+          value="prenom">
+        <div *ngIf="submitted && formValid.prenom.errors" class="text-danger text-errors-prenom">
+          <div *ngIf="formValid.prenom.errors.required">Le champ prenom est requis</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="societe">Societe</label>
         <input class="form-control" formControlName="societe" id="societe" placeholder="Societe" type="text"
-               value="societe">
+          value="societe">
+        <div *ngIf="submitted && formValid.societe.errors" class="text-danger text-errors-societe">
+          <div *ngIf="formValid.societe.errors.required">Le champ societe est requis</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="dateNaissance">date de naissance</label>
         <input class="form-control" formControlName="dateNaissance" id="dateNaissance" placeholder="date de naissance"
-               type="date"
-               value="dateNaissance">
+          type="date" value="dateNaissance">
+        <div *ngIf="submitted && formValid.dateNaissance.errors" class="text-danger text-errors-dateNaissance">
+          <div *ngIf="formValid.dateNaissance.errors.required">Le champ date de naissance est requis</div>
+        </div>
       </div>
 
 
       <div class="form-group mt-2">
         <label for="sexe">sexe</label>
-        <select class="form-control" formControlName="sexe" id="sexe" name="sexe">
-          <option value="female">Femme</option>
+        <select class="form-control" formControlName="sexe" id="sexe" name="sexe" [(ngModel)]='sexeSelect'>
+          <option value="female" selected>Femme</option>
           <option value="male">Homme</option>
         </select>
       </div>
 
       <div class="form-group mt-2">
         <label for="adresse">Adresse</label>
-        <input class="form-control" formControlName="adresse" id="adresse" placeholder="adresse"
-               type="text"
-               value="adresse">
+        <input class="form-control" formControlName="adresse" id="adresse" placeholder="adresse" type="text"
+          value="adresse">
+        <div *ngIf="submitted && formValid.adresse.errors" class="text-danger text-errors-adresse">
+          <div *ngIf="formValid.adresse.errors.required">Le champ adresse est requis</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="password">Mot de passe</label>
-        <input class="form-control" formControlName="password" id="password" placeholder="password"
-               type="password">
+        <input class="form-control" formControlName="password" id="password" placeholder="password" type="password">
+        <div *ngIf="submitted && formValid.password.errors" class="text-danger text-errors-adresse">
+          <div *ngIf="formValid.password.errors.required">Le champ password est requis</div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="photo">Photo</label>
-        <input class="form-control" formControlName="photo" id="photo" placeholder="url de la photo"
-               type="text"
-               value="photo">
+        <input class="form-control" formControlName="photo" id="photo" placeholder="url de la photo" type="text"
+          value="photo">
+        <div *ngIf="submitted && formValid.photo.errors" class="text-danger text-errors-adresse">
+          <div *ngIf="formValid.photo.errors.required">Le champ photo est requis</div>
+          <div *ngIf="formValid.photo.errors.pattern">Le champ photo n'a pas le format requis(https://url_de_la_photo)
+          </div>
+        </div>
       </div>
 
       <div class="form-group mt-2">
         <label for="departement">departement</label>
-        <select class="form-control" formControlName="departement" id="departement" name="departement">
+        <select class="form-control" formControlName="departement" id="departement" name="departement"
+          [(ngModel)]='departmentSelect'>
           <option value="DSI/INDUS/Solaris">DSI/INDUS/Solaris</option>
           <option value="DSI/DEV/PHP">DSI/DEV/PHP</option>
           <option value="DSI/DEV/Java">DSI/DEV/Java</option>
@@ -97,4 +120,3 @@
 </ng-template>
 <button (click)="open(content)" class="btn btn-primary">Ajouter un collegue
 </button>
-
